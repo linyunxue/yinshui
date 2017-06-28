@@ -1,0 +1,84 @@
+{template "content","header"}
+<!--主体内容 开始-->
+<div class="article">
+  <!--左侧区域 开始-->
+  <div id="left">
+    <div class="left_title"  style='display:none;'>
+      <h2>网站导航</h2></div>
+    <div class="left_body"  style='display:none;'>
+      <ul class="subchannellist">
+		{pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+		{loop $data $r}
+		<li class="depth1"><a href="{$r[url]}/index.php?m=content&c=index&a=lists&catid={$r[catid]}">{$r[catname]}</a></li>
+		{/loop}
+		{/pc}
+      </ul>
+    </div>
+    <div class="left_title">
+      <h2>热门排行</h2></div>
+    <div class="left_body">
+      <ul class="textlist1">
+		{pc:content action="hits" catid="$catid" num="10" order="views DESC" cache="3600"}
+		{loop $data $r}
+			<li><a href="{$r[url]}" target="_blank" title="{$r[title]}">{$r[title]}</a></li>
+		{/loop}
+		{/pc}
+		</ul>
+    </div>
+    <div class="left_bottom"></div>
+    <div class="left_title">
+      <h2>月度排行</h2></div>
+    <div class="left_body">
+      <ul class="textlist1">
+		 {pc:content action="hits" catid="$catid" num="8" order="monthviews DESC" cache="3600"}
+		{loop $data $r}
+			<li><a href="{$r[url]}" target="_blank" title="{$r[title]}">{$r[title]}</a></li>
+		{/loop}
+		{/pc}
+		</ul>
+    </div>
+    <div class="left_bottom"></div>
+  </div>
+  <!--左侧区域 结束-->
+  <!--右侧区域 开始-->
+  <div id="right">
+    <!--当前位置 开始-->
+    <div id="location">
+      <b>当前位置：</b><a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} 列表
+	  </div>
+    <!--当前位置 结束-->
+    <div class="clear"></div>
+
+      {php $j=1;}
+      {loop subcat($catid) $v}
+      {php if($v['type']!=0) continue;}
+    <div class="right_title">
+      <span class="more">
+        <a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[$v[catid]]['catid']}<?php echo $ccu;?>" target="_blank">更多&gt;&gt;</a></span>
+      <h2>{$v[catname]}</h2>
+    </div>
+    <div class="right_body">
+        {pc:content action="lists" catid="$v[catid]" num="5" order="id DESC"}
+      <ul class="textlist">
+        {loop $data $r}
+        <li>
+          <span class="float_right">{date('Y-m-d H:i:s',$r[inputtime])}</span>
+          <a href="{$r[url]}" target="_blank" title="{$r[title]}">{$r[title]}</a></li>
+		  {if $n%5==0}<li class="bk20 hr"></li>{/if}
+        {/loop}
+		</ul>
+	  {/pc}
+        {$j++}
+        {/loop}
+    </div>
+
+
+
+
+    <div class="right_bottom"></div>
+  </div>
+  <!--右侧区域 结束-->
+  <div class="clear"></div>
+</div>
+<!--主体内容 结束-->
+{template "content","footer"}

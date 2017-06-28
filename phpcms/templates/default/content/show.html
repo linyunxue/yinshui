@@ -1,0 +1,78 @@
+{template "content","header"}
+<!--主体内容 开始-->
+<div class="article">
+  <div id="left">
+    <div class="left_title" style='display:none;'>
+      <h2>网站导航</h2></div>
+    <div class="left_body" style='display:none;'>
+      <ul class="subchannellist">
+		{pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+		{loop $data $r}
+		<li class="depth1"><a href="{$r[url]}/index.php?m=content&c=index&a=lists&catid={$r[catid]}">{$r[catname]}</a></li>
+		{/loop}
+		{/pc}
+      </ul>
+    </div>
+	<div class="left_title">
+      <h2>评论排行</h2></div>
+    <div class="left_body">
+	{pc:comment action="bang" siteid="$siteid" cache="3600"}
+      <ul class="textlist1">
+		{loop $data $r}
+			<li>·<a href="{$r[url]}" target="_blank">{str_cut($r[title], 40)}</a><span>({$r[total]})</span></li>
+			{/loop}
+		</ul>
+		{/pc}
+    </div>
+    <div class="left_bottom"></div>
+	
+    <div class="left_title">
+      <h2>联系我们</h2></div>
+    <div class="left_body">
+        <div class="contact_wrap">
+            <b>地址：</b>福州市西洪路494号
+            <br>
+            <b>电话：</b>0591-83725471
+            <br>
+            <b>E-mail：</b>fjncys@163.com
+            <br>
+            <b>邮政编码：</b>350001
+            <br>
+            <b>网址：</b>
+            <a href="http://www.fjncys.com/" target="_blank" class="WebUrl">http://www.fjncys.com</a>
+            <br>
+        </div>
+    </div>
+    <div class="left_bottom"></div>
+  </div>
+  <div id="right">
+    <div class="right_title">
+      <!--当前位置 开始-->
+      <div id="location">
+        <b>当前位置：</b><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+      <!--当前位置 结束--></div>
+    <div class="right_body">
+      <div class="InfoTitle">
+        <h1>{$title}</h1></div>
+      <div class="info_from_wrap">
+        <b>来源：</b>{$copyfrom}&nbsp;
+        <b>日期：</b>{$inputtime}&nbsp;
+		</div>
+      <div class="InfoContent">
+	  {$content}
+	  </div>
+      <div class="info_previous_next_wrap">
+        <div class="Previous">
+          <b>上一篇：</b><a href="{$previous_page[url]}">{$previous_page[title]}</a></div>
+        <div class="Next">
+          <b>下一篇：</b>
+          <a href="{$next_page[url]}">{$next_page[title]}</a>
+		  </div>
+      </div>
+    </div>
+    <div class="right_bottom"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--主体内容 结束-->
+{template "content","footer"}

@@ -1,0 +1,40 @@
+{template "content","header"}
+<!--主体内容 开始-->
+<div class="article">
+  <div id="left">
+    <div class="left_title">
+      <h2>联系我们</h2></div>
+    <div class="left_body">
+      <div class="contact_wrap">
+            <b>地址：</b>福州市西洪路494号
+            <br>
+            <b>电话：</b>0591-83725471
+            <br>
+            <b>E-mail：</b>fjncys@163.com
+            <br>
+            <b>邮政编码：</b>350001
+            <br>
+            <b>网址：</b>
+            <a href="http://www.fjncys.com/" target="_blank" class="WebUrl">http://www.fjncys.com</a>
+            <br>
+        </div>
+	</div>
+    <div class="left_bottom"></div>
+  </div>
+  <div id="right">
+    <div class="right_title">
+      <!--当前位置 开始-->
+      <div id="location">
+        <b>当前位置：</b><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+      <!--当前位置 结束--></div>
+    <div class="right_body">
+      <div class="InfoContent">
+	  <script language='javascript' src='{APP_PATH}index.php?m=formguide&c=index&a=show&formid=12&action=js&siteid=1'></script>
+	  </div>
+    </div>
+    <div class="right_bottom"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--主体内容 结束-->
+{template "content","footer"}

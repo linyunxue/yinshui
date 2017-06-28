@@ -1,0 +1,253 @@
+{template "content","header"}
+<!--主体内容 开始-->
+<div class="article">
+    <!--左侧区域 开始-->
+    <div id="left">
+        <div class="left_title"  style='display:none;'>
+            <h2>网站导航</h2></div>
+        <div class="left_body"  style='display:none;'>
+            <ul class="subchannellist">
+                {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+                {loop $data $r}
+                <li class="depth1"><a href="{$r[url]}/index.php?m=content&c=index&a=lists&catid={$r[catid]}">{$r[catname]}</a></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+        <div class="left_title">
+            <h2>热门排行</h2></div>
+        <div class="left_body">
+            <ul class="textlist1">
+                {pc:content action="hits" catid="$catid" num="5" order="views DESC" cache="3600"}
+                {loop $data $r}
+                <li><a href="{$r[url]}" target="_blank" title="{$r[title]}">{$r[title]}</a></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+        <div class="left_bottom"></div>
+        <div class="left_title">
+            <h2>月度排行</h2></div>
+        <div class="left_body">
+            <ul class="textlist1">
+                {pc:content action="hits" catid="$catid" num="8" order="monthviews DESC" cache="3600"}
+                {loop $data $r}
+                <li><a href="{$r[url]}" target="_blank" title="{$r[title]}">{$r[title]}</a></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+
+        <div class="left_title">
+            <h2>联系我们</h2></div>
+        <div class="left_body">
+            <div class="contact_wrap">
+                <b>地址：</b>福州市西洪路494号
+                <br>
+                <b>电话：</b>0591-83725471
+                <br>
+                <b>E-mail：</b>fjncys@163.com
+                <br>
+                <b>邮政编码：</b>350001
+                <br>
+                <b>网址：</b>
+                <a href="http://www.fjncys.com/" target="_blank" class="WebUrl">http://www.fjncys.com</a>
+                <br>
+            </div>
+        </div>
+        <div class="left_bottom"></div>
+    </div>
+    <!--左侧区域 结束-->
+    <!--右侧区域 开始-->
+    <div id="right">
+        <!--当前位置 开始-->
+        <div id="location">
+            <b>当前位置：</b><a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} 列表
+        </div>
+        <!--当前位置 结束-->
+        <div class="clear"></div>
+
+
+        <!--新闻动态-->
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[10]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[10]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="10" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[18]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[18]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="18" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[23]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[23]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="23" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[24]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[24]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="24" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[16]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[16]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="16" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[12]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[12]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="12" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[14]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[14]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="14" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[22]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[22]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="22" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[13]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[13]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="13" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+        <div class="right_title">
+            <span class="more"><a href="/index.php?m=content&c=index&a=lists&catid={$CATEGORYS[20]['catid']}<?php echo $ccu;?>" target="_blank ">更多&gt;&gt;</a></span>
+            <h2>{$CATEGORYS[20]['catname']}</h2>
+        </div>
+        <div class="right_body">
+            <ul class="textlist">
+                {pc:content  action="lists" catid="20" order="updatetime DESC" num="5"}
+                {loop $data $key $val}
+                <li>
+                    <span class="float_right ">{date('Y-m-d',$val[updatetime])}</span>
+                    <a href="{$val[url]}" title="{$val[title]}" {title_style($val[style])}>{str_cut($val['title'],60,'')}</a>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+
+
+        <div class="right_bottom"></div>
+    </div>
+    <!--右侧区域 结束-->
+    <div class="clear"></div>
+</div>
+<!--主体内容 结束-->
+{template "content","footer"}

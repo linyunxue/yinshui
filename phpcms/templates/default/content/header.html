@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="{$SEO['description']}">
+<link href="./statics/style.css?v=0708" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./statics/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="./statics/common.js"></script>
+<script type="text/javascript" src="./statics/jquery.SuperSlide.js"></script>
+</head>
+  
+  <body class="body_index">
+    <!--顶部 开始-->
+    <div id="top_main">
+      <div id="top">
+        <div id="top_1">{$SEO['site_title']}</div>
+        <div id="top_2"></div>
+        <div id="top_3">
+			<form action="{APP_PATH}index.php" method="get" target="_blank" style="">
+				<input type="hidden" name="m" value="search"/>
+				<input type="hidden" name="c" value="index"/>
+				<input type="hidden" name="a" value="init"/>
+				<input type="hidden" name="typeid" value="{$typeid}" id="typeid"/>
+				<input type="hidden" name="siteid" value="{$siteid}" id="siteid"/>
+				<table class="search_table">
+				  <tbody>
+					<tr>
+					  <th>
+						<input type="text" class="form_text1" value="" maxlength="50" name="q" id="q"/></th>
+					  <td>
+						<input type="submit" value="搜 索" class="form_button btn btn-small1" /></td>
+					</tr>
+				  </tbody>
+				</table>
+			</form>
+        </div>
+      </div>
+    </div>
+    <!--顶部 结束-->
+    <!--Flash幻灯片 开始-->
+    <!-- <div id="banner_main"><div id="banner"></div></div>-->
+    <!--Flash幻灯片 结束-->
+    <!--JS幻灯片 开始-->
+    <div id="banner_main">
+      <div id="banner">
+        <ul class="bannerlist">
+          <li style="display: none;">
+            <img src="./statics/image/Image5.png"></li>
+          <li style="display: block;">
+            <img src="./statics/image/Image7.png"></li>
+		<li style="display: block;">
+            <img src="./statics/image/Image9.png"></li>
+        </ul>
+      </div>
+    </div>
+    <script>$('#banner_main').slide({
+        titCell: '.hd ul',
+        mainCell: '#banner ul',
+        autoPlay: true,
+        autoPage: true,
+        delayTime: 500,
+        effect: 'fade'
+      });</script>
+    <!--JS幻灯片 结束-->
+    <!--Logo 开始-->
+    <div id="logo_main">
+      <div id="logo">
+        <!--网站Logo 开始-->
+        <div class="WebLogo">
+          <a href="/" target="_self">
+            <img src="./statics/image/logo.png" title="{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}" alt="{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}"></a>
+        </div>
+        <!--网站Logo 结束--></div>
+    </div>
+    <!--Logo 结束-->
+    <?php if(intval($_GET['catid']) === 19 || intval($_GET['ccu']) === 1){$ccu = '&ccu=1';}?>
+    <!--导航条 开始-->
+    <div id="navigation_main">
+      <div id="navigation">
+		{pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+        <ul class="navigationlist">
+          <li class="drop-menu-effect">
+            <a href="{siteurl($siteid)}" target="_self" class="current">首页</a></li>
+			{loop $data $r}
+          <li class="drop-menu-effect">
+            <a href="{$r[url]}<?php if(intval($_GET['catid']) == 19 || intval($_GET['ccu']) == 1){echo $ccu;}?>" target="_self">{$r[catname]}</a>
+          </li>
+		  {/loop}
+        </ul>
+		 {/pc}
+      </div>
+    </div>
+    <!--导航条 结束-->
+    <script type="text/javascript">(function($) {
+
+      $(function() {
+        slidemenu(".drop-menu-effect");
+      });
+      function slidemenu(_this) {
+        $(_this).each(function() {
+          var $this = $(this);
+          var theMenu = $this.find(".submenu");
+          var tarHeight = theMenu.height();
+          theMenu.css({
+            height: 0
+          });
+          $this.hover(function() {
+            $(this).addClass("hover_menu");
+            theMenu.stop().show().animate({
+              height: tarHeight
+            },
+            400);
+          },
+          function() {
+            $(this).removeClass("hover_menu");
+            theMenu.stop().animate({
+              height: 0
+            },
+            400,
+            function() {
+              $(this).css({
+                display: "none"
+              });
+            });
+          });
+        });
+      }</script>
+	  
+	  
